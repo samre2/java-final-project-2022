@@ -94,35 +94,40 @@ public class Menu
         //for(int i=0;i<5;i++){
         int i=1;
         //===================ONE==================================
-        Scanner s=new Scanner(System.in);
+        Scanner sc =new Scanner(System.in);
+        Student student1 = new Student();
         //do{
 
 
-        ArrayList<Student> st= new ArrayList<Student>();
-        Student std= new Student();
-        Student student1 = new Student();
-        st.add(student1);
-        ArrayList<SubjectMarks> subjectmarks;
-        System.out.print("Enter the roll no: ");
-        int roll=s.nextInt();
-        st.set(i).setRoll_no(roll);
-        System.out.print("Enter the First Name: ");
-        String Name=s.next();
-        st.get(i).setfName(Name);
-        System.out.print("Enter the Last Name: ");
-        String lName=s.next();
-        student1.setlName(lName);
+        System.out.println("Enter a roll num:");
+        int roll_num = sc.nextInt();
 
-        System.out.print("Enter the Date of Birth: ");
-        String dob=s.next();
-        student1.setDob(dob);
-        System.out.print("Enter the Gender of student: ");
-        String gender=s.next();
-        student1.setGender(gender);
-        System.out.print("Enter the Standard: ");
-        String standard=s.next();
-        System.out.print(" ");
-        student1.setStandard(standard);
+        System.out.println("Enter a first name:");
+        String fname1 =  sc.nextLine();
+
+        System.out.println("Enter a last name:");
+        String lname1 =  sc.nextLine();
+
+        System.out.println("Enter a birth date:");
+        String dob1=  sc.nextLine();
+
+        System.out.println("Enter your gender:");
+        String gender1 =  sc.nextLine();
+
+        System.out.println("Enter a school name:");
+        String school_name = sc.nextLine();
+
+        System.out.println("In which standard this student read:");
+        String standard1 = sc.nextLine();
+
+        ArrayList<Student> student = new ArrayList<Student>();
+        student.add(new Student(roll_num, fname1, lname1, dob1, standard1));
+
+
+
+
+
+
         System.out.println("Do You Want to Add Student ?:");
 
         //add=s.nextChar();
@@ -136,11 +141,11 @@ public class Menu
             FileOutputStream fileOutputStream = new FileOutputStream(new File("record"));
             out = new BufferedOutputStream(fileOutputStream);
 
-            out.write(Name.getBytes());
-            out.write(lName.getBytes());
-            out.write(dob.getBytes());
-            out.write(gender.getBytes());
-            out.write(standard.getBytes());
+            out.write(fname1.getBytes());
+            out.write(lname1.getBytes());
+            out.write(dob1.getBytes());
+            out.write(gender1.getBytes());
+            out.write(standard1.getBytes());
 
 
             System.out.println("Writing data into a file is success!");
@@ -161,28 +166,72 @@ public class Menu
         //public static void TestStudent(){
         // Insert Details for student 1
         Student student1 = new Student();
+        Scanner sc = new Scanner(System.in);
 
-        student1.setRoll_no(1);
-        student1.setfName("RamDev");
-        student1.setlName("Baba");
-        student1.setDob("1995/01/01");
-        student1.setGender("Male");
-        student1.setStandard("SEE fail");
+        System.out.println("Enter a roll num:");
+        int roll_num = sc.nextInt();
+
+        System.out.println("Enter a first name:");
+        String fname1 =  sc.nextLine();
+
+        System.out.println("Enter a last name:");
+        String lname1 =  sc.nextLine();
+
+        System.out.println("Enter a birth date:");
+        String dob1=  sc.nextLine();
+
+        System.out.println("Enter your gender:");
+        String gender1 =  sc.nextLine();
+
+        System.out.println("Enter a school name:");
+        String school_name = sc.nextLine();
+
+        System.out.println("In which standard this student read:");
+        String standard1 = sc.nextLine();
+        //-------------------------------------------------------------------------------------------------------
+        // Marks user input
+
+        System.out.println("Enter Math marks:");
+        int math = sc.nextInt();
+
+        System.out.println("Enter Science marks:");
+        int science = sc.nextInt();
+
+        System.out.println("Enter English marks");
+        int english = sc.nextInt();
+
+        System.out.println("Enter Nepali marks");
+        int nepali = sc.nextInt();
+
+
+        student1.setRoll_no(roll_num);
+        student1.setfName(fname1);
+        student1.setlName(lname1);
+        student1.setDob(dob1);
+        student1.setGender(gender1);
+        student1.setStandard(standard1);
 
         // Insert marks
-        ArrayList<SubjectMarks> studentMarks = new ArrayList<SubjectMarks>();
-        studentMarks.add(new SubjectMarks("Maths  ", 80));
-        studentMarks.add(new SubjectMarks("Science", 90));
-        studentMarks.add(new SubjectMarks("English", 70));
-        studentMarks.add(new SubjectMarks("Nepali ", 60));
-        student1.setSubjectMarks(studentMarks);
+        ArrayList<SubjectMarks> subjectMarks = new ArrayList<SubjectMarks>();
+        subjectMarks.add(new SubjectMarks("Maths  ", math));
+        subjectMarks.add(new SubjectMarks("Science", science));
+        subjectMarks.add(new SubjectMarks("English", english));
+        subjectMarks.add(new SubjectMarks("Nepali ", nepali));
+        student1.setSubjectMarks(subjectMarks);
 
         // Calculate total marks
         int totalMarks = 0;
-        for(SubjectMarks subjectMarks : studentMarks){
-            totalMarks += subjectMarks.getMarks();
+        for(SubjectMarks studentMarks : subjectMarks){
+            totalMarks += studentMarks.getMarks();
         }
         student1.setTotalMarks(totalMarks);
+
+        // array list of students details in student model
+        ArrayList<Student> student = new ArrayList<Student>();
+        student.add(new Student(roll_num, fname1, lname1, dob1, standard1, subjectMarks, totalMarks));
+
+
+
 
         // Displaying student 1 details
         System.out.println("============================================");
@@ -201,8 +250,8 @@ public class Menu
         System.out.println("Subject Name: "+"              "+ " Marks: " );
 
 
-        for(SubjectMarks subjectMarks : student1.getSubjectMarks()){
-            System.out.println(subjectMarks.getSubjectName() + "                       "+subjectMarks.getMarks());
+        for(SubjectMarks marksOfSub : student1.getSubjectMarks()){
+            System.out.println(marksOfSub.getSubjectName() + "                       "+marksOfSub.getMarks());
 
         }
         System.out.println("--------------------------------------------");

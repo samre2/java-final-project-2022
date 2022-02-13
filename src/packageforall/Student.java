@@ -17,7 +17,7 @@ class Student{
 
     }
 
-    public Student(int roll_no, String firstName, String lastName, String dob,String gender, String standard, ArrayList<SubjectMarks> subjectMarks, int totalMarks){
+    public Student(int roll_no, String firstName, String lastName, String dob, String gender, ArrayList<SubjectMarks> subjectMarks, int totalMarks){
 
         this.roll_no = roll_no;
 
@@ -28,6 +28,15 @@ class Student{
         this.standard = standard;
         this.subjectMarks = subjectMarks;
         this.totalMarks = totalMarks;
+    }
+
+    public Student(int roll_num, String fname1, String lname1, String dob1, String standard1) {
+        this.roll_no = roll_num;
+        this.firstName = fname1;
+        this.lastName = lname1;
+        this.dob = dob1;
+        this.standard = standard1;
+
     }
 
     public int getRoll_no() {
